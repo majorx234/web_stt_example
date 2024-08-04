@@ -1,0 +1,76 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: majorx234@googlemail.com.com
+    name: Major
+  description: This API provides wave transfer capability
+  title: Wave transfer
+  version: "1.0"
+servers:
+- url: http://to.be.defined/v1.0
+tags:
+- description: Test the service
+  name: wave transfer
+paths:
+  /wave_transfer:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: Success
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: The HTTP 403 Forbidden client error status response code indicates
+            that the server understood the request but refuses to authorize it.
+      summary: Get status of file upload
+      tags:
+      - wave_upload
+components:
+  responses:
+    Forbidden:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: The HTTP 403 Forbidden client error status response code indicates
+        that the server understood the request but refuses to authorize it.
+    NotFound:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: The requested resource was not found
+    InvalidInput:
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+      description: Content provided for this request was invalid
+  schemas:
+    ErrorResponse:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      type: object
+    Status:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      type: object
