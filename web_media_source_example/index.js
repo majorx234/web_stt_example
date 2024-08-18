@@ -1,3 +1,34 @@
+
+$( function() {
+  $( "#slider-vertical1" ).slider({
+    orientation: "vertical",
+    range: "min",
+    min: 0,
+    max: 127,
+    value: 0,
+    slide: function( event, ui ) {
+      $( "#amount1" ).val( ui.value );
+      midi.slide(1,ui.value);
+    }
+  });
+  $( "#amount1" ).val( $( "#slider-vertical1" ).slider( "value" ) );
+
+$( function() {
+  $( "#slider-vertical1" ).slider({
+    orientation: "vertical",
+    range: "min",
+    min: 0,
+    max: 127,
+    value: 0,
+    slide: function( event, ui ) {
+      $( "#amount1" ).val( ui.value );
+      midi.slide(1,ui.value);
+    }
+  });
+  $( "#amount1" ).val( $( "#slider-vertical1" ).slider( "value" ) );
+  }
+);
+
 let audioCtx;
 const audioElement = document.querySelector("audio");
 const canvas = document.querySelector(".visualizer");
